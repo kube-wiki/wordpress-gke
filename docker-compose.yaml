@@ -38,7 +38,7 @@ services:
       context: .
       dockerfile: config/docker/Dockerfile.web
       args:
-        BUILDER_COMPOSER: my-docker_composer
+        BUILDER_COMPOSER: wordpress-gke_composer
     restart: always
     ports:
       - "9000:9000"
@@ -64,7 +64,7 @@ services:
       context: .
       dockerfile: config/docker/Dockerfile.nginx
       args:
-        BUILDER_COMPOSER: my-docker_composer
+        BUILDER_COMPOSER: wordpress-gke_composer
     restart: always
     depends_on:
       - redis
