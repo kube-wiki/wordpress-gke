@@ -52,8 +52,8 @@ services:
       WP_REDIS_HOST: redis
       WP_REDIS_PORT: 6379
       WP_ENV: development
-      WP_HOME: http://local.my-docker.se
-      WP_SITEURL: http://local.my-docker.se/wp
+      WP_HOME: http://local.kube.wiki
+      WP_SITEURL: http://local.kube.wiki/wp
       EP_HOST: http://elasticsearch:9200
     volumes:
       - .:/var/www
