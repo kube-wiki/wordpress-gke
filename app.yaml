@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wordpress-gke
+  labels:
+    app: wordpress-gke
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wordpress-gke
+  template:
+    metadata:
+      labels:
+        app: wordpress-gke
+    spec:
+      containers:
+        - name: nginx
+          image: gcr.io/branded-kubernetes-1/wordpress-gke_nginx:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: wordpress-gke
+spec:
+  type: LoadBalancer
+  selector:
+    app: wordpress-gke
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80

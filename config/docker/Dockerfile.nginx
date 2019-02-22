@@ -3,10 +3,9 @@ FROM ${BUILDER_COMPOSER} as composer
 
 FROM nginx:1.15.8-alpine
 
-RUN rm -rf /etc/nginx/nginx.conf
+COPY config/nginx /etc/nginx/conf.d
+
 COPY /web /var/www/web
-RUN mv /etc/nginx/mime.types /etc/mime.types
-RUN mv /etc/nginx/fastcgi_params /etc/fastcgi_params
 
 # Composer installed dependencies and plugins
 COPY --from=composer /app/web/app/mu-plugins /var/www/web/app/mu-plugins
@@ -15,4 +14,4 @@ COPY --from=composer /app/web/wp /var/www/web/wp
 
 WORKDIR /var/www/web
 
-EXPOSE 8080
+EXPOSE 80
